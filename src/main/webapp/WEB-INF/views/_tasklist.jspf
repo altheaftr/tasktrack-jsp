@@ -1,0 +1,6 @@
+<table class="table table-sm bg-white align-middle"><tr><th>Tugas</th><th>MK</th><th>Deadline</th><th>Prioritas</th><th>Status</th><th></th></tr>
+<c:forEach var="t" items="${rows}"><tr><td><a href="${ctx}/app/tasks/view?id=${t.id}"><c:out value="${t.title}"/></a> <c:forEach var="g" items="${t.tags}"><span class="badge" style="background:<c:out value='${g.color}'/>"><c:out value="${g.name}"/></span> </c:forEach></td>
+<td><c:out value="${t.course}"/></td><td class="${t.late?'text-danger fw-bold':''}">${t.dl}</td><td>${t.priority}</td><td>${t.status}</td>
+<td class="d-flex gap-1"><form method="post" action="${ctx}/app/tasks/toggle"><input type="hidden" name="_t" value="${csrf}"><input type="hidden" name="id" value="${t.id}"><button class="btn btn-sm btn-outline-success">${t.status=='done'?'Buka lagi':'Selesai'}</button></form>
+<a class="btn btn-sm btn-outline-primary" href="${ctx}/app/tasks/form?id=${t.id}">Edit</a></td></tr></c:forEach>
+<c:if test="${empty rows}"><tr><td colspan="6" class="text-center text-muted">Tidak ada tugas</td></tr></c:if></table>

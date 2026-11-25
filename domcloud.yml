@@ -1,0 +1,17 @@
+# Paste this in DOM Cloud: your website -> Setup -> Deploy.
+# 1) Replace the GitHub URL with YOUR repository.  2) tasktrack.jar must be committed in the repo root.
+source:
+  url: https://github.com/USERNAME/REPO_NAME
+  branch: main
+
+features:
+  - java 17
+
+nginx:
+  root: public_html/public
+  passenger:
+    enabled: "on"
+    app_start_command: env PORT=$PORT java -Xmx256m -jar tasktrack.jar
+
+commands:
+  - mkdir -p public

@@ -1,0 +1,3 @@
+<c:if test="${not empty sessionScope.ok}"><div class="alert alert-success"><c:out value="${sessionScope.ok}"/></div><c:remove var="ok" scope="session"/></c:if>
+<c:if test="${not empty sessionScope.bad}"><div class="alert alert-danger"><c:out value="${sessionScope.bad}"/></div><c:remove var="bad" scope="session"/></c:if>
+<c:if test="${not empty requestScope.bad}"><div class="alert alert-danger"><c:out value="${requestScope.bad}"/></div></c:if>

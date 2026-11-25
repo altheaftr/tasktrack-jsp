@@ -1,0 +1,15 @@
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TaskTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="${ctx}/assets/css/app.css" rel="stylesheet">
+<script>document.documentElement.dataset.bsTheme=localStorage.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.style.setProperty('--acc',localStorage.acc||'#c0693c')</script></head><body>
+<nav class="navbar navbar-expand-lg py-3"><div class="container"><a class="brand fs-4" href="${ctx}/">TaskTrack</a>
+<button class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#nv"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="nv">
+<c:if test="${not empty sessionScope.uid}"><div class="navbar-nav mx-auto gap-lg-1">
+<a class="nav-link ${nav=='dashboard'?'active':''}" href="${ctx}/app/dashboard">Dashboard</a><a class="nav-link ${nav=='tasks'?'active':''}" href="${ctx}/app/tasks">Tugas</a>
+<a class="nav-link ${nav=='history'?'active':''}" href="${ctx}/app/history">Riwayat</a><a class="nav-link ${nav=='courses'?'active':''}" href="${ctx}/app/courses">Mata Kuliah</a>
+<a class="nav-link ${nav=='tags'?'active':''}" href="${ctx}/app/tags">Tag</a><a class="nav-link ${nav=='profile'?'active':''}" href="${ctx}/app/profile">Profil</a></div></c:if>
+<div class="d-flex gap-2 align-items-center ms-auto"><button id="langBtn" class="btn btn-sm btn-soft">ID</button><button id="themeBtn" class="btn btn-sm btn-soft">🌙</button>
+<c:choose><c:when test="${not empty sessionScope.uid}"><form method="post" action="${ctx}/app/logout"><input type="hidden" name="_t" value="${csrf}"><button class="btn btn-sm btn-ink" title="<c:out value='${sessionScope.uname}'/>">Logout</button></form></c:when>
+<c:otherwise><a class="btn btn-sm btn-ink" href="${ctx}/app/login">Login</a></c:otherwise></c:choose></div></div></div></nav>
